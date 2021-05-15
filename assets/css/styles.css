@@ -78,6 +78,9 @@ td{
     border: 1px solid green;
 }
 
+#comunicacion #informacionHeader .telefono{
+    border:1px solid yellow;
+}
 #comunicacion #carrito{
     position: relative;
     border:1px solid white;

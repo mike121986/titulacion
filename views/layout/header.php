@@ -22,8 +22,9 @@
 					</a>
 				</div>
 				<div id="comunicacion">
-					<div class="informacionHeader">
-					<i class="fas fa-address-card"></i>
+					<div id="informacionHeader">
+						<i class="fas fa-phone-volume fa-2x"></i>
+						<div class="telefono">(55) 58-50-01-40</div>
 					</div>
 					<div id="carrito">
 						<i class="fas fas fa-shopping-cart fa-3x"></i>
