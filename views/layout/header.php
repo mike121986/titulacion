@@ -7,7 +7,7 @@
 		<link rel="stylesheet" href="<?=base_url?>assets/css/styles.css" />
 		<link rel="shortcut icon" href="<?=base_url?>assets/img/tdwem.ico" type="image/x-icon">
 		<link rel="preconnect" href="https://fonts.gstatic.com">
-		<link href="https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap" rel="stylesheet">
+		<link href='https://fonts.googleapis.com/css?family=Fredoka One' rel='stylesheet'>
 		
 	</head>
 	<body>
@@ -23,8 +23,19 @@
 				</div>
 				<div id="comunicacion">
 					<div id="informacionHeader">
-						<i class="fas fa-phone-volume fa-2x"></i>
-						<div class="telefono">(55) 58-50-01-40</div>
+						<div class="tel1">
+							<i class="fas fa-phone-volume fa-2x"></i>
+							<div class="telefonolocal">
+								<h3> (55) 58-50-01-40</h3>
+							</div>
+						</div>
+						<div class="tel1">
+						<i class="fab fa-whatsapp fa-2x"></i>
+							<div class="telefonolocal">
+								<a href="https://wa.link/30zod7" class="text-white">55-91-99-62-45</a>
+							</div>
+						</div>
+						
 					</div>
 					<div id="carrito">
 						<i class="fas fas fa-shopping-cart fa-3x"></i>
