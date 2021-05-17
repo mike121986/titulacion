@@ -47,62 +47,47 @@ td{
 }
 
 /*CONTAINER*/
-/* #container{
-   width: 80%;
+#container{
+   width: 100%;
    margin: 0px auto;
    box-shadow: 0px 0px 10px gray;
    background: white;
-} */
+}
 
 /*HEADER*/
 
 #header{
     width: 100%;
     height: 145px;
-    background: #303F67 no-repeat fixed center;
+    background: #303F67 url('../img/img-noise-other.png')  fixed center;
+    top: 0px;
+    left: 0px;
+    position: static;
 }
 
-#logo{
-    width: 40%;
+#header #logo{
+    width: 47%;
     padding: 20px;
+    float:left;
+}
+
+#header #logo img{
+    float:left;
+    height: 100px;    
     margin-left: 20px;
-    float:left;
-    border: 1px solid red;
 }
 
-#comunicacion{
+#header #logo a{
     position: relative;
-    left: 44%;
-    height: 145px;
-    width: 50%;
-    border: 1px solid green;
-}
-
-#comunicacion #informacionHeader .telefono{
-    border:1px solid yellow;
-}
-#comunicacion #carrito{
-    position: relative;
-    border:1px solid white;
-    top: 50%;
-}
-#comunicacion #carrito i{
-    color:white;
-}
-#logo img{
-    float:left;
-    height: 100px;
-}
-
-#logo a{
+    top: 40px;
     float:left;
     font-size: 40px;
     letter-spacing: 8px;
-    font-family: 'Bree Serif', serif;
+    font-family: 'Fredoka One';
     text-transform: uppercase;
     
+    margin-left: 20px;
     color:#E0F3ED;
-    /* text-shadow: 8px 3px 8px rgb(222, 78, 5 ,1); */
     font-weight: bold;
     margin-top: 18px;
     margin-left: 25px;
@@ -110,24 +95,78 @@ td{
     text-decoration: none;
 }
 
-#logo a .barra{
+#header #logo a .barra{
     border:1px solid #95FF1D;
     height: 3px;
     width: 220px;
     background-color: #95FF1D;
 }
 
-#logo a:hover{
+#header #logo a:hover{
     text-shadow: 0px 2px 1px #222222, 0px 0px 4px #079992;
 }
+
+#header #comunicacion{
+    position: relative;
+    top: 0px;
+    left: 50%;
+    height: 145px;
+    width: 49%;
+}
+#header #comunicacion #informacionHeader{
+    width: 100%;
+    height: 75px;
+}
+#header #comunicacion #informacionHeader .tel1{
+    position: relative;
+    width: 100%;
+    top: 0px;
+    left: 0px;
+    height: 40px;
+}
+#header #comunicacion #informacionHeader .tel1 .telefonolocal,
+ #header #comunicacion #informacionHeader .tel1 i{
+    position:absolute;
+    top: 0px;
+    left: 68%;
+    width: auto;
+    color:#E0F3ED;
+} 
+
+#header #comunicacion #informacionHeader .tel1 .telefonolocal{
+    left: 73%;
+    font-size: 1.4em;
+}
+#header #comunicacion #informacionHeader .tel1 .telefonolocal a{
+    font-size: 1.3em;
+    color: white;
+    text-decoration: none;
+}
+#comunicacion #carrito{
+    position: relative;
+}
+#comunicacion #carrito i{
+    color:white;
+    position: relative;
+    top: 10px;
+    left:90%;
+}
+
 
 /*MENU*/
 #menu{
     clear:both;
-    background: blue;
+    background:#B33939;
     color: white;
     height: 55px;
     border-bottom: 4px solid #01B1EA;
+/*     -webkit-box-shadow: 0px 9px 33px -5px rgba(0,0,0,0.95);
+-moz-box-shadow: 0px 9px 33px -5px rgba(0,0,0,0.95);
+box-shadow: 0px 9px 33px -5px rgba(0,0,0,0.95); */
+
+-webkit-box-shadow: 2px -14px 49px 14px rgba(0,0,0,0.56);
+-moz-box-shadow: 2px -14px 49px 14px rgba(0,0,0,0.56);
+box-shadow: 2px -14px 49px 14px rgba(0,0,0,0.56);
 }
 
 #menu ul{
@@ -170,7 +209,7 @@ td{
 
 /*BARRA LATERAL*/
 #lateral{
-    width: 22%;
+    width: 10%;
     min-height: 500px;
     float: left;
     margin-top:20px;
@@ -294,7 +333,7 @@ button{
 
 /*CENTRAL*/
 #central{
-    width: 72%;
+    width: 85%;
     min-height: 500px;
     float: right;
     border-left: 1px solid #ccc;
