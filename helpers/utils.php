@@ -60,5 +60,16 @@ class Utils{
 		
 		return $value;
 	}
+
+	public static function recotarPuntos($texto,$lengthTexto,$maximosShow){
+		$puntos = "...";
+		$contar = strlen($texto);
+		if($contar>$maximosShow){
+			$textoCortado = substr($texto, 0,$lengthTexto).$puntos;
+		}else{
+			$textoCortado = $texto;
+		}
+		return $textoCortado;
+	}
 	
 }

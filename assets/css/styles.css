@@ -79,7 +79,7 @@ td{
 
 #header #logo a{
     position: relative;
-    top: 40px;
+    top: 20px;
     float:left;
     font-size: 40px;
     letter-spacing: 8px;
@@ -95,15 +95,8 @@ td{
     text-decoration: none;
 }
 
-#header #logo a .barra{
-    border:1px solid #95FF1D;
-    height: 3px;
-    width: 220px;
-    background-color: #95FF1D;
-}
-
 #header #logo a:hover{
-    text-shadow: 0px 2px 1px #222222, 0px 0px 4px #079992;
+    text-shadow: 5px 5px 3px #222222, 0px 0px 9px #ffffff;
 }
 
 #header #comunicacion{
@@ -124,28 +117,31 @@ td{
     left: 0px;
     height: 40px;
 }
-#header #comunicacion #informacionHeader .tel1 .telefonolocal,
+
  #header #comunicacion #informacionHeader .tel1 i{
     position:absolute;
     top: 0px;
-    left: 68%;
+    left: 60%;
     width: auto;
-    color:#E0F3ED;
+    color:white;
+    margin-left: 25px;
 } 
-
 #header #comunicacion #informacionHeader .tel1 .telefonolocal{
-    left: 73%;
-    font-size: 1.4em;
+    position: absolute;
+    top: 0px;
+    left: 68%;
+    color: white;
 }
+
 #header #comunicacion #informacionHeader .tel1 .telefonolocal a{
-    font-size: 1.3em;
+    font-size: 1.9em;
     color: white;
     text-decoration: none;
 }
-#comunicacion #carrito{
+#comunicacion #carritoHeader{
     position: relative;
 }
-#comunicacion #carrito i{
+#comunicacion #carritoHeader i{
     color:white;
     position: relative;
     top: 10px;
@@ -266,31 +262,36 @@ select, textarea{
     margin-bottom: 2px;
 }
 
-input[type="text"],
+ input[type="text"],
 input[type="password"],
 input[type="email"],
 input[type="number"],
 select, textarea{
-    border: 1px solid #C9C9C9;
-    box-shadow: 0px 0px 2px #ccc inset;
+    border-bottom: 2px solid #C9C9C9;
+    border-top: #FFFFFF;
+    border-left: #FFFFFF;
+    border-right: #FFFFFF;
+    border-radius: 25px;
+    box-shadow: 0px 0px 2px #ccc inset; 
     background: white;
     padding: 2px;
     color: gray;
-    transition: all 300ms;
+    transition: all 500ms;
 }
 
-input[type="text"]:focus,
+ input[type="text"]:focus,
 input[type="password"]:focus,
 input[type="email"]:focus{
     border: 1px solid #1579b5;
     color: black;
+    border-radius: 25px;
 }
-
+ 
 input[type="button"],
 input[type="submit"],
 button, .button{
     display: block;
-    border-radius: 2px;
+    border-radius: 25px;
     width: auto;
     padding: 5px;
     padding-left: 10px;
@@ -333,7 +334,7 @@ button{
 
 /*CENTRAL*/
 #central{
-    width: 85%;
+    width: 89%;
     min-height: 500px;
     float: right;
     border-left: 1px solid #ccc;
@@ -354,17 +355,19 @@ button{
 
 /*PRODUCTOS*/
 .product{
-    width: 30%;
+    width: 15%;
     float:left;
     margin-left: 10px;
     margin-right: 10px;
     margin-bottom: 30px;
     text-align: center;
+   
 }
 
 .product a{
     color:black;
     text-decoration: none;
+  
 }
 
 .product a:hover{
@@ -383,7 +386,7 @@ button{
 }
 
 .product h2{
-    font-size: 18px;
+    font-size: .9em;
     margin-bottom: 10px;
 }
 

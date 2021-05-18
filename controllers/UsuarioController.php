@@ -38,7 +38,8 @@ class usuarioController{
 		}else{
 			$_SESSION['register'] = "failed";
 		}
-		header("Location:".base_url.'usuario/registro');
+		//header("Location:".base_url.'usuario/registro');
+		echo '<script>window.location="'.base_url.'usuario/registro"</script>';
 	}
 	
 	public function login(){
@@ -50,7 +51,6 @@ class usuarioController{
 			$usuario->setPassword($_POST['password']);
 			
 			$identity = $usuario->login();
-			
 			if($identity && is_object($identity)){
 				$_SESSION['identity'] = $identity;
 				
@@ -63,7 +63,9 @@ class usuarioController{
 			}
 		
 		}
-		header("Location:".base_url);
+		Utils::deleteSession('error_login');
+		echo '<script>window.location="'.base_url.'"</script>';
+        
 	}
 	
 	public function logout(){
