@@ -25,6 +25,15 @@ $(document).ready(function(){
 	 		})
 	 	}
 	 }
+	 $(".eyeHiddeNo").on('click', function(){
+	   var tipo = $("#passwordRegistro").attr('type');
+	   console.log(tipo)
+	   if(tipo == "password"){
+		$("#passwordRegistro").attr('type', 'text');
+	   }else{
+		$("#passwordRegistro").attr('type', 'password');
+	   }
+	  })
 	/* disabled div usuario */
 	$(".permisoDoctor").attr('disabled','disabled');
 	$('.dropdown-toggle').on("click",function(){
@@ -48,7 +57,12 @@ $(document).ready(function(){
 			if(verificar == 0){
 				$("#email").css('border','1px solid red');
 				$("#errorEmail").css({"color":"red",'font-size':'x-small'});
-				$("#errorEmail").html("No coincide el formato de email");
+				Swal.fire({
+					icon: 'error',
+					title: 'CORREO',
+					text: 'FORMATO DE CORREO INCORRECTO',
+					footer: 'ejemplo@ejemplo.com'
+				  })
 				verif = false;
 				return false;
 			 }else{
@@ -70,7 +84,12 @@ $(document).ready(function(){
 			 if(verificar == 0){
 				$("#Password").css('border','1px solid red');
 				$("#errorpsw").css({"color":"red",'font-size':'x-small'});
-				$("#errorpsw").html("No coincide el formato de password");
+				Swal.fire({
+					icon: 'error',
+					title: 'PASSWORD',
+					text: 'FORMATO DE PASSWORD INCORRECTO',
+					footer: 'La contraseña debe tener al entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula y al menos una mayúscula.'
+				  })
 				verif = false;
 				return false;
 			 }else{
@@ -86,4 +105,79 @@ $(document).ready(function(){
 		  }
 
       })
+
+	  // validar que los campos no se envien en blanco
+	  $("#enviarRegistro").on('click',function(e){
+		  e.preventDefault();
+		  var name = $("#nombre").val();
+		  var lastName = $("#apellidos").val();
+		  var email = $("#emailRegistro").val();
+		  var pasword = $("#password").val();
+
+		  
+			var verificar = expRegular('nombre',$("#nombre").val());
+			if(verificar == 0){
+				$("#nombre").css('border','1px solid red');
+				Swal.fire({
+					icon: 'error',
+					title: 'NOMBRE',
+					text: 'FORMATO DE NOMBRE INCORRECTO',
+					footer: 'Ernesto'
+				  })
+				verif = false;
+				return false;
+			 }else{
+				$("#nombre").css('border','1px solid green');
+				verif = true;
+			 }
+
+
+			 var verificar = expRegular('nombre',$("#apellidos").val());
+			 if(verificar == 0){
+				$("#apellidos").css('border','1px solid red');
+				Swal.fire({
+					icon: 'error',
+					title: 'APELLIDOS',
+					text: 'FORMATO DE APELLIDOS INCORRECTO',
+					footer: 'Ramirez Loyola'
+				  })
+				verif = false;
+				return false;
+			 }else{
+				$("#apellidos").css('border','1px solid green');
+				verif = true;
+			 }
+
+			 var verificar = expRegular('email',$("#emailRegistro").val());
+			 if(verificar == 0){
+				$("#emailRegistro").css('border','1px solid red');
+				Swal.fire({
+					icon: 'error',
+					title: 'CORREO',
+					text: 'FORMATO DE CORREO INCORRECTO',
+					footer: 'ejemplo@ejemplo.com'
+				  })
+				verif = false;
+				return false;
+			 }else{
+				$("#emailRegistro").css('border','1px solid green');
+				verif = true;
+			 }
+
+			 var verificar = expRegular('pass',$("#passwordRegistro").val());
+			 if(verificar == 0){
+				$("#passwordRegistro").css('border','1px solid red');
+				Swal.fire({
+					icon: 'error',
+					title: 'PASSWORD',
+					text: 'FORMATO DE PASSWORD INCORRECTO',
+					footer: 'La contraseña debe tener al entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula y al menos una mayúscula.'
+				  })
+				verif = false;
+				return false;
+			 }else{
+				$("#passwordRegistro").css('border','1px solid green');
+				verif = true;
+			 }
+	  });
 });

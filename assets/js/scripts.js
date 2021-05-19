@@ -121,7 +121,7 @@ w3Unpocodet0d0 */
     break; 
 
   }
-  if (!(varif.test(contenido))) {
+  if (!(varif.test(contenido)) || contenido == "") {
        return 0;
     }else{
        return texto;
@@ -200,6 +200,7 @@ function hoy(){
    }
  }
 
+// mostrar y coultar password
 
 // document.getElementById('botondiv').onclick = btnreturn;
   // function btnreturn(e){
