@@ -1,5 +1,5 @@
 <?php
-require_once 'models/usuario.php';
+require_once  $_SERVER['DOCUMENT_ROOT'].'/titulo/models/usuario.php';
 
 class usuarioController{
 	
@@ -9,6 +9,25 @@ class usuarioController{
 	
 	public function registro(){
 		require_once 'views/usuario/registro.php';
+	}
+	public function verifEmail($email){
+		$dato = Validacion::validarEmail($email,0);
+		if($dato == '0'){
+			echo 100;
+		}else{
+			$usuario = new Usuario();
+			$usuario->setTabla('usuarios');
+			$usuario->setEmail($dato);
+
+			$verifCorreo = $usuario->verificaDato('email');
+			
+			if($verifCorreo == 1){
+				echo 1;
+			}else{
+				echo 0;
+			}
+
+		}
 	}
 	
 	public function save(){

@@ -1,5 +1,6 @@
 <?php
-require_once 'models/producto.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/titulo/models/producto.php';
+
 
 class productoController{
 	
