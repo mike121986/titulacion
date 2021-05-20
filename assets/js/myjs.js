@@ -26,14 +26,13 @@ $(document).ready(function(){
 	 	}
 	 }
 	 $(".eyeHiddeNo").on('click', function(){
-	   var tipo = $("#passwordRegistro").attr('type');
-	   console.log(tipo)
-	   if(tipo == "password"){
-		$("#passwordRegistro").attr('type', 'text');
-	   }else{
-		$("#passwordRegistro").attr('type', 'password');
-	   }
-	  })
+		var tipo = $("#passwordRegistro").attr('type');
+		if(tipo == "password"){
+		 $("#passwordRegistro").attr('type', 'text');
+		}else{
+		 $("#passwordRegistro").attr('type', 'password');
+		}
+	   })
 	/* disabled div usuario */
 	$(".permisoDoctor").attr('disabled','disabled');
 	$('.dropdown-toggle').on("click",function(){
@@ -179,5 +178,44 @@ $(document).ready(function(){
 				$("#passwordRegistro").css('border','1px solid green');
 				verif = true;
 			 }
-	  });
+
+			 if(verif == true){ $("#Frm-registro").submit();}
+	  	});
+
+		// verificar si esta libre el correo
+		  $("#emailRegistro").on('change',function(){
+			 var valorInput = $(this).val();
+			 var correo = new FormData();
+			 correo.append('email',valorInput);
+			 $.ajax({
+				 url:getAbsolutePath()+"views/layout/ajax.php",
+				 method:"POST",
+				 data:correo,
+				 cache:false,
+				 contentType:false,
+				 processData: false,
+				 beforeSend:function(){
+					$('.spinnerWhite').html('<i class="fas fa-sync fa-spin"></i>');
+				 },
+				 success:function(existe){
+					 if(existe == 100){
+						$('.spinnerWhite').css('color','red');
+						$('.spinnerWhite').html('FORMATO DE PASSWORD INCORRECTO');
+						$('#enviarRegistro').attr('disabled','disabled');
+					}else if(existe == 1){
+						$('.spinnerWhite').css('color','red');
+						$('.spinnerWhite').html('EL CORREO INRGESADO ESTA EN USO');
+						$('#emailRegistro').css('border','1px solid red');
+						$('#enviarRegistro').attr('disabled','disabled');
+					 }else{
+						$('.spinnerWhite').css('color','green');
+						$('.spinnerWhite').html('ESTE CORREO PUEDE USARSE');
+						$('#emailRegistro').css('border','1px solid GREEN');
+						$('#enviarRegistro').removeAttr('disabled');
+					 }
+				 }
+			 });
+		  })
+
+
 });
