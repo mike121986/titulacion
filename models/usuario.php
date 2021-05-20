@@ -9,6 +9,7 @@ class Usuario{
 	private $rol;
 	private $imagen;
 	private $db;
+	private $tabla;
 	
 	public function __construct() {
 		$this->db = Database::connect();
@@ -70,6 +71,18 @@ class Usuario{
 		$this->imagen = $imagen;
 	}
 
+	public function getTabla()
+	{
+		return $this->tabla;
+	}
+
+	public function setTabla($tabla)
+	{
+		$this->tabla = $tabla;
+
+		return $this;
+	}
+
 	public function save(){
 		$sql = "INSERT INTO usuarios VALUES(NULL, '{$this->getNombre()}', '{$this->getApellidos()}', '{$this->getEmail()}', '{$this->getPassword()}', 'user', null);";
 		$save = $this->db->query($sql);
@@ -105,6 +118,21 @@ class Usuario{
 		return $result;
 	}
 	
+	public function verificaDato($campo){
+		$result = 0;
+		$sql = "SELECT * FROM {$this->getTabla()} WHERE $campo = '{$this->getEmail()}'";
+		$query = $this->db->query($sql);
+		
+		if($query && $query->num_rows == 1){
+			$result = 1;
+		}else{
+			$result = $result;
+		}
+
+		return $result;
+	}
 	
 	
+
+
 }
