@@ -96,7 +96,7 @@ class usuarioController{
 			unset($_SESSION['admin']);
 		}
 		
-		header("Location:".base_url);
+		echo '<script>window.location="'.base_url.'"</script>';
 	}
 	
 } // fin clase
