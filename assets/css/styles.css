@@ -403,11 +403,11 @@ button{
     position: relative;
     width: 80%;
     height: auto;
-    left: 20%;
+    left: 15%;
     top: 0px;
     border: 1px solid yellow;
 }
-
+#detail-product .descripcion h5,
 .productoSolo h2{
     color : rgb(15, 32, 15);
     position: relative;
@@ -422,23 +422,93 @@ button{
     height: 250px;
 
 }
+#detail-product .imagenesComplemento{
+    position: absolute;
+    left: -11%;
+    top: 12%;
+    width: 11%;
+    height: 370px;
+    border: 1px solid red;
 
+}
+#detail-product .imagenesComplemento .foto{
+    position: relative;
+    width: 65px;
+    height: 65px;
+    border: 1px solid green;
+    left: 20%;
+    margin-top: 7px ;
+}
 #detail-product .image{
+
     display: block;
     width: 47%;
     float:left;
     border:1px solid blue;
+    height: 400px;
 }
 
 #detail-product img{
+    position: left;
     display: block;
     width: 100%;
     float:left;
+    height: auto;
 }
-
+#detail-product .tarjetas,
+#detail-product .descripcion,
 #detail-product .data{
     width: 50%;
     float:right;
+    border: 1px solid red;
+}
+#detail-product .data .cantidadPrecio{
+    border: 3px solid purple;
+}
+#detail-product .data .precioTotal,
+#detail-product .data .cantidad{
+    width: 50%;
+    height: 50px;
+    border: 1px solid green;
+}
+#detail-product .data .cantidad #cantidadPieza,
+#detail-product .data .cantidad .description{
+    position: relative;
+    top: 0px;
+    left: 0px;
+    width: 50%;
+    border: 1px solid brown;
+}
+
+#detail-product .data .precioTotal{
+    position: relative;
+    top: 0px;
+    left: 50%;
+    width: 45%;
+    border: 1px solid green;
+}
+#detail-product .data .cantidad #cantidadPieza{
+    position: relative;
+    left: 50%;
+    top: -48px;
+}
+#detail-product .descripcion{
+    height: 150px;
+    
+}
+#detail-product .descripcion h5{
+
+}
+#detail-product .descripcion p{
+    position: relative;
+    left: 5%;
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    width: 90%;
+    height: 130px;
+
 }
 
 #detail-product .description{
