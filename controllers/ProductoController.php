@@ -13,14 +13,28 @@ class productoController{
 	}
 	
 	public function ver(){
-		if(isset($_GET['id'])){
-			$id = $_GET['id'];
 		
-			$producto = new Producto();
-			$producto->setId($id);
+		if(isset($_GET['id'])){
+			$id = Validacion::validarNumero($_GET['id']);
+			$categoria = Validacion::validarNumero($_GET['cat']);
 			
-			$product = $producto->getOne();
-			
+			if($id == -1 || $categoria == -1){
+				$error = new errorController();
+				$error->errorLink();
+				exit();
+			}else{
+				$producto = new Producto();
+				$producto->setId($id);
+	
+				$product = $producto->getOne();
+				
+				$parecido = new Producto();
+				$parecido-> setCategoria_id($categoria);
+				$parecido->setId($id);
+
+				$prCat= $parecido->getProductoCat();	
+						
+			}
 		}
 		require_once 'views/producto/ver.php';
 	}

@@ -19,8 +19,11 @@
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
     <!-- css datepicker -->    
     <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
-
-    
+	<!-- easy zoom -->
+	<!-- <link rel="stylesheet" href="<?=base_url?>assets/css/easyzoom.css"> -->
+	<!-- owl Carrusel -->
+    <link rel="stylesheet" href="<?=base_url?>assets/css/owlcarrusel/owl.carousel.min.css">
+    <link rel="stylesheet" href="<?=base_url?>assets/css/owlcarrusel/owl.theme.default.min.css">
     <!-- js boostrap -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
@@ -41,9 +44,12 @@
     <script src="https://kit.fontawesome.com/1849e1867b.js" crossorigin="anonymous"></script>
     <!-- swet alert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+	<!-- elevatezoom -->
+	<script type="text/javascript" src="https://cdn.rawgit.com/igorlino/elevatezoom-plus/1.1.6/src/jquery.ez-plus.js"></script>
+    <!-- owlCarrusel -->
+	<script src="<?=base_url?>assets/js/owlcarrusel/owl.carousel.js"></script>
 
-
-    <!-- <script src="<?=base_url?>assets/js/myjs.js"></script> -->
+    <!-- <script src="<?=base_url?>assets/js/easyzoom.js"></script> -->
 		
 								 
 		
@@ -75,20 +81,24 @@
 						</div>
 						
 					</div>
-					<div id="carritoHeader">
+				<!-- 	<div id="carritoHeader">
 						<i class="fas fas fa-shopping-cart fa-2x"></i>
-					</div>
+					</div> -->
 				</div>
 			</header>
 
 			<!-- MENU -->
-
+			<?php $categorias = Utils::showCategorias(); ?>
 			<nav id="menu">
 				<ul>
 					<li>
 						<a href="<?=base_url?>">Inicio</a>
 					</li>
-					
+					<?php while($cat = $categorias->fetch_object()):?>
+						<li>
+							<a href="<?=base_url?>categoria/ver&id=<?=$cat->id?>"><?=$cat->nombre?></a>
+						</li>
+					<?php endwhile; ?>
 				</ul>
 			</nav>
 

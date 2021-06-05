@@ -217,5 +217,14 @@ $(document).ready(function(){
 			 });
 		  })
 
+		  $("#cantidadPieza").on('keyup',function(){
+			    var precioTotal = 0.0;
+				var cantidad = $(this).val();
+				var precio = $('#precioUnidad').val();
+				precioTotal = multiplicar(cantidad,precio);
+
+				$("#priceTotal").html(precioTotal);
+		  });
+
 
 });

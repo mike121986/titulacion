@@ -138,6 +138,14 @@ function getAbsolutePath() {
     return loc.href.substring(0, loc.href.length - ((loc.pathname + loc.search + loc.hash).length - pathName.length));    
 }
 
+function multiplicar(uno,dos){
+  var resultado;
+  var datoUno = parseFloat(uno);
+  var datoDos = parseFloat(dos);
+  resultado = (datoUno*datoDos);
+  return resultado;
+}
+
 function sumar(uno,dos){
   var result;
   result = (uno + dos);
@@ -200,6 +208,14 @@ function hoy(){
    }
  }
 
+ $('#easyzoom').ezPlus({
+	scrollZoom:true,
+
+	 gallery: 'gallery_01',
+	 cursor: 'crosshair',
+	 galleryActiveClass: 'active',
+	 loadingIcon: 'https://mir-s3-cdn-cf.behance.net/project_modules/disp/583b6136197347.571361641da25.gif'
+  });
 // mostrar y coultar password
 
 // document.getElementById('botondiv').onclick = btnreturn;
@@ -212,5 +228,5 @@ function hoy(){
   //   }
   // }
   
-
+ 
 

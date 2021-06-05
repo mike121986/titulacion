@@ -153,5 +153,12 @@ class Producto{
 		}
 		return $result;
 	}
+
+	public function getProductoCat(){
+		$query = "SELECT * FROM productos WHERE categoria_id = {$this->getCategoria_id()} and id <> {$this->getId()}";
+		$get = $this->db->query($query);
+		
+		return $get;
+	}
 	
 }
