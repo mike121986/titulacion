@@ -9,6 +9,7 @@ class productoController{
 		$productos = $producto->getRandom(12);
 	
 		// renderizar vista
+		
 		require_once 'views/producto/destacados.php';
 	}
 	

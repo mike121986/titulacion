@@ -287,7 +287,6 @@ input[type="email"]:focus{
 }
  
 input[type="button"],
-input[type="submit"],
 button, .button{
     display: block;
     border-radius: 25px;
@@ -326,6 +325,7 @@ button, .button{
 label, 
 input[type="button"],
 input[type="submit"],
+.btn,
 button{
     display:block;
     margin-top: 10px;
@@ -340,7 +340,7 @@ button{
     box-shadow: -5px -1px 5px #ddd;
     padding:25px;
 }
-
+#central h2,
 #central h1{
     font-size: 24px;
     font-weight: normal;
@@ -350,6 +350,7 @@ button{
     margin-bottom: 20px;
     padding: 20px;
     padding-top: 0px;
+    text-transform: capitalize;
 }
 
 /*PRODUCTOS*/

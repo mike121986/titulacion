@@ -178,7 +178,7 @@ class Validacion
 	public static function textoLargo($texto,$largoTexto)
 	{
 		$contar = strlen($texto);
-			if (!empty(preg_match("/^[0-9a-zA-ZáéíóúàèìòùÀÈÌÒÙÁÉÍÓÚñÑüÜ_.+\s]+$/",$texto) && $contar <= $largoTexto)) {
+			if (!empty(preg_match("/^[0-9a-zA-ZáéíóúàèìòùÀÈÌÒÙÁÉÍÓÚñÑüÜ'_.+\s]+$/",$texto) && $contar <= $largoTexto)) {
 				return strtoupper($texto);
 			} else {
 				return 900;

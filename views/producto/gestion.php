@@ -18,14 +18,17 @@
 <?php endif; ?>
 <?php Utils::deleteSession('delete'); ?>
 	
-<table>
-	<tr>
-		<th>ID</th>
-		<th>NOMBRE</th>
-		<th>PRECIO</th>
-		<th>STOCK</th>
-		<th>ACCIONES</th>
-	</tr>
+<table class="TableGenerica table table-striped table-bordered">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>NOMBRE</th>
+			<th>PRECIO</th>
+			<th>STOCK</th>
+			<th>ACCIONES</th>
+		</tr>
+	</thead>
+	<tbody>
 	<?php while($pro = $productos->fetch_object()): ?>
 		<tr>
 			<td><?=$pro->id;?></td>
@@ -33,9 +36,9 @@
 			<td><?=$pro->precio;?></td>
 			<td><?=$pro->stock;?></td>
 			<td>
-				<a href="<?=base_url?>producto/editar&id=<?=$pro->id?>" class="button button-gestion">Editar</a>
-				<a href="<?=base_url?>producto/eliminar&id=<?=$pro->id?>" class="button button-gestion button-red">Eliminar</a>
+				<a href="<?=base_url?>producto/editar&id=<?=$pro->id?>" class="btn btn-success button button-gestion">Editar</a>
 			</td>
 		</tr>
 	<?php endwhile; ?>
+	</tbody>
 </table>

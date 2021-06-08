@@ -11,5 +11,10 @@ class errorController{
 		echo "<h1>HAY UN ERROR CON EL LINK QUE SE INGRESO, INTENTALO DE NUEVO";
 		echo "<a href='".base_url."'>REGRESO</a>";
 	}
+
+	public function errorId(){
+		echo "<h1>HAY UN ERROR CON EL ID QUE SE INGRESO, INTENTALO DE NUEVO";
+		echo "<a href='".base_url."'>REGRESO</a>";
+	}
 	
 }

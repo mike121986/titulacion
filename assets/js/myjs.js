@@ -1,4 +1,8 @@
 $(document).ready(function(){
+
+	// datatble
+	$(".TableGenerica").DataTable();
+
 	
 	var path = window.location.href;
 	var login = sessionStorage.getItem("logguin");

@@ -32,6 +32,18 @@ class categoriaController{
 	
 	public function crear(){
 		Utils::isAdmin();
+		if(isset($_GET['id'])){
+			$idDato = Validacion::validarNumero($_GET['id']);
+			if($idDato == '-1'){
+				echo '<script>window.location="'.base_url.'Error/errorId"</script>';
+			}else{
+				$edita = new Categoria();
+				$edita->setId($idDato);
+				$editarProducto = $edita->getOne();
+				//var_dump($editarProducto);
+			}
+			
+		}
 		require_once 'views/categoria/crear.php';
 	}
 	
@@ -44,6 +56,29 @@ class categoriaController{
 			$save = $categoria->save();
 		}
 		header("Location:".base_url."categoria/index");
+	}
+
+	public function update(){
+		$idCat = (Validacion::validarNumero($_POST["idCategoria"]) == -1) ?  false : $_POST["idCategoria"];
+		$name = (Validacion::textoLargo($_POST["nombreCategoria"],50) == 900) ? false : $_POST["nombreCategoria"];
+	
+		if( $idCat == false || $name == false){
+			echo '<script>window.location="'.base_url.'Error/errorId"</script>';
+		}else{
+			$editar = new Categoria();
+			$editar->setId($idCat);
+			$editar->setnombre($name);
+			$cambio = $editar->editar();
+			if($cambio){
+				$_SESSION['success'] = '<div class="alert alert-success" role="alert">SE ACTUALIZO CORRECTAMENTE</div>';
+				echo '<script>window.location="'.base_url.'Categoria/crear&id='.$idCat.'"</script>';
+			}else{
+				$_SESSION['err'] = '<div class="alert alert-danger" role="alert">ALGO SUCEDIO VERIFICA TUS DATOS</div>';
+				echo '<script>window.location="'.base_url.'Categoria/crear&id='.$idCat.'"</script>';
+			}
+
+		}
+
 	}
 	
 }

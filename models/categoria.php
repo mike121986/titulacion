@@ -45,6 +45,19 @@ class Categoria{
 		}
 		return $result;
 	}
+
+	public function editar(){
+		$edit = "UPDATE categorias SET nombre='{$this->getNombre()}' WHERE  id={$this->getId()}";
+		
+		$query = $this->db->query($edit);
+
+		$result = false;
+		if($query){
+			$result = true;
+		}
+
+		return $result;
+	}
 	
 	
 }
