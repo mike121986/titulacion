@@ -14,6 +14,8 @@ class carritoController{
 	}
 	
 	public function add(){
+		/* var_dump($_GET);
+		die(); */
 		if(isset($_GET['id'])){
 			$producto_id = $_GET['id'];
 		}else{
@@ -41,7 +43,8 @@ class carritoController{
 				$_SESSION['carrito'][] = array(
 					"id_producto" => $producto->id,
 					"precio" => $producto->precio,
-					"unidades" => 1,
+					/* "precio" => $_GET["total"], */
+					"unidades" => $_GET["pz"],
 					"producto" => $producto
 				);
 			}

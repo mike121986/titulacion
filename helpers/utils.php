@@ -13,7 +13,7 @@ class Utils{
 	
 	public static function isAdmin(){
 		if(!isset($_SESSION['admin'])){
-			header("Location:".base_url);
+			echo '<script>window.location="'.base_url.'"</script>';
 		}else{
 			return true;
 		}
@@ -21,7 +21,7 @@ class Utils{
 	
 	public static function isIdentity(){
 		if(!isset($_SESSION['identity'])){
-			header("Location:".base_url);
+			echo '<script>window.location="'.base_url.'"</script>';
 		}else{
 			return true;
 		}
@@ -78,5 +78,14 @@ class Utils{
 		$categorias = $categoria->getAll();
 		return $categorias;
 	}
+
+	public static function showEstados(){
+		require_once 'models/pedido.php';
+		$estados = new Pedido();
+		$getAll = $estados->getEstados();
+		return $getAll;
+	}
+
+ 
 	
 }

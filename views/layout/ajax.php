@@ -3,6 +3,7 @@ session_start();
 require_once "../../helpers/validacion.php";
 require_once "../../helpers/crypt.php";
 require_once "../../controllers/UsuarioController.php";
+require_once "../../controllers/CategoriaController.php";
 require_once "../../config/db.php";
 
 
@@ -28,6 +29,19 @@ class Ajax{
 		$consultar = new usuarioController();
 		$consultar->verifEmail($datos);
 	}
+
+	public function categoria(){
+		$id = $this->getDato();
+		$consulta = new categoriaController($id);
+		$consulta-> showCategoria($id);
+	}
+
+	public function colocarMunicipio(){
+		$colmun = $this -> getDato();
+		$mandarId = new usuarioController();
+		$mandarId->municipio($colmun);
+		
+	}
 }
 /* 	echo "<pre>";
   	var_dump($_POST);
@@ -38,6 +52,19 @@ if(isset($_POST['email'])){
 	$estado = new Ajax();
 	$estado -> setDato($_POST['email']);
 	$estado -> verifCorreo();
+
+}
+
+if(isset($_POST['cat_id'])){
+	$estado = new Ajax();
+	$estado -> setDato($_POST['cat_id']);
+	$estado -> categoria();
+}
+
+if(isset($_POST['idEstado'])){
+	$estado = new Ajax();
+	$estado -> setDato($_POST['idEstado']);
+	$estado -> colocarMunicipio();
 
 }
 

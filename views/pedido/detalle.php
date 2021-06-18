@@ -1,6 +1,6 @@
 <h1>Detalle del pedido</h1>
 
-<?php if (isset($pedido)): ?>
+<?php if (isset($pedido)): echo "<pre>";var_dump($pedido);echo"</pre>";?>
 		<?php if(isset($_SESSION['admin'])): ?>
 			<h3>Cambiar estado del pedido</h3>
 			<form action="<?=base_url?>pedido/estado" method="POST">

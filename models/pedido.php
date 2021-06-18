@@ -3,9 +3,12 @@
 class Pedido{
 	private $id;
 	private $usuario_id;
-	private $provincia;
-	private $localidad;
-	private $direccion;
+	private $numero;
+	private $municipio;
+	private $calle;
+	private $cp;
+	private $atencion;
+	private $referencia;
 	private $coste;
 	private $estado;
 	private $fecha;
@@ -25,16 +28,28 @@ class Pedido{
 		return $this->usuario_id;
 	}
 
-	function getProvincia() {
-		return $this->provincia;
+	function getNumero() {
+		return $this->numero;
 	}
 
-	function getLocalidad() {
-		return $this->localidad;
+	function getMunicipio() {
+		return $this->municipio;
 	}
 
 	function getDireccion() {
-		return $this->direccion;
+		return $this->calle;
+	}
+
+	function getCp(){
+		return $this->cp;
+	}
+
+	function getatencion(){
+		return $this->atencion;
+	}
+
+	function getreferencia(){
+		return $this->referencia;
 	}
 
 	function getCoste() {
@@ -61,16 +76,28 @@ class Pedido{
 		$this->usuario_id = $usuario_id;
 	}
 
-	function setProvincia($provincia) {
-		$this->provincia = $this->db->real_escape_string($provincia);
+	function setNumero($numero) {
+		$this->numero = $this->db->real_escape_string($numero);
 	}
 
-	function setLocalidad($localidad) {
-		$this->localidad = $this->db->real_escape_string($localidad);
+	function setMunicipio($municipio) {
+		$this->municipio = $this->db->real_escape_string($municipio);
 	}
 
-	function setDireccion($direccion) {
-		$this->direccion = $this->db->real_escape_string($direccion);
+	function setDireccion($calle) {
+		$this->calle = $this->db->real_escape_string($calle);
+	}
+
+	function setCp($cp){
+		$this->cp = $this->db->real_escape_string($cp);
+	}
+
+	function setAtencion($atencion){
+		$this->atencion= $this->db->real_escape_string($atencion);;
+	}
+
+	function setreferencia($referencia){
+		$this->referencia= $this->db->real_escape_string($referencia);;
 	}
 
 	function setCoste($coste) {
@@ -133,7 +160,7 @@ class Pedido{
 	}
 	
 	public function save(){
-		$sql = "INSERT INTO pedidos VALUES(NULL, {$this->getUsuario_id()}, '{$this->getProvincia()}', '{$this->getLocalidad()}', '{$this->getDireccion()}', {$this->getCoste()}, 'confirm', CURDATE(), CURTIME());";
+		$sql = "INSERT INTO pedidos VALUES(NULL, {$this->getUsuario_id()}, '{$this->getNumero()}', '{$this->getMunicipio()}', '{$this->getDireccion()}', {$this->getCoste()},'{$this->getCp()}','{$this->getatencion()}','{$this->getreferencia()}' , 'confirm', CURDATE(), CURTIME());";
 		$save = $this->db->query($sql);
 		
 		$result = false;
@@ -178,5 +205,12 @@ class Pedido{
 			$result = true;
 		}
 		return $result;
+	}
+
+	public function getEstados(){
+		$sql = "SELECT * FROM estados";
+		$edo = $this->db->query($sql);
+
+		return $edo;
 	}
 }

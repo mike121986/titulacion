@@ -98,5 +98,28 @@ class usuarioController{
 		
 		echo '<script>window.location="'.base_url.'"</script>';
 	}
+
+	public function municipio($idEstadoMun){
+       
+		$verificar = Validacion::validarNumero($idEstadoMun); 
+		
+		if($verificar != -1){
+			$munvalidacion= new Usuario();
+			$munvalidacion->setEstado($verificar);
+			$finalconsulta= $munvalidacion->consultaEstado();
+			
+			if($finalconsulta->num_rows>0 ){
+				$procesomun=array();
+				while($verificamun=$finalconsulta->fetch_object()){
+					$muniproceso=array('id'=>$verificamun->idMunicipio, 'nombre'=>$verificamun->municipio);
+					array_push($procesomun,$muniproceso);                    
+				}
+				header('Content-type: application/json; charset=utf-8');
+				echo json_encode($procesomun,JSON_FORCE_OBJECT);
+				exit();
+			}
+			
+		}     
+	}
 	
 } // fin clase

@@ -1,5 +1,5 @@
 <?php if(isset($edit) && isset($pro) && is_object($pro)): ?>
-	<h1>Editar producto <?=$pro->nombre?></h1>
+	<h2 id="idEditarProducto">Editar <?=$pro->nombre?></h2>
 	<?php $url_action = base_url."producto/save&id=".$pro->id; ?>
 	
 <?php else: ?>
@@ -7,14 +7,14 @@
 	<?php $url_action = base_url."producto/save"; ?>
 <?php endif; ?>
 	
-<div class="form_container">
+<div class="form_container container">
 	
 	<form action="<?=$url_action?>" method="POST" enctype="multipart/form-data">
 		<label for="nombre">Nombre</label>
 		<input type="text" name="nombre" value="<?=isset($pro) && is_object($pro) ? $pro->nombre : ''; ?>"/>
 
 		<label for="descripcion">Descripción</label>
-		<textarea name="descripcion"><?=isset($pro) && is_object($pro) ? $pro->descripcion : ''; ?></textarea>
+		<textarea name="descripcion" rows="3" style="overflow: scroll; resize: none;"><?=isset($pro) && is_object($pro) ? $pro->descripcion : ''; ?></textarea>
 
 		<label for="precio">Precio</label>
 		<input type="text" name="precio" value="<?=isset($pro) && is_object($pro) ? $pro->precio : ''; ?>"/>
@@ -36,7 +36,11 @@
 		<?php if(isset($pro) && is_object($pro) && !empty($pro->imagen)): ?>
 			<img src="<?=base_url?>uploads/images/<?=$pro->imagen?>" class="thumb"/> 
 		<?php endif; ?>
-		<input type="file" name="imagen" />
+		<div class="custom-file">
+			<input type="file" class="custom-file-input" id="customFile" name="imagen" >
+			<label class="custom-file-label" for="customFile" >imagen</label>
+		</div>
+	<!-- 	<input type="file" name="imagen" /> -->
 		
 		<input type="submit" value="Guardar" />
 	</form>

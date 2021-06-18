@@ -4,27 +4,50 @@ require_once 'models/pedido.php';
 class pedidoController{
 	
 	public function hacer(){
-		
+		$edo = Utils::showEstados();
 		require_once 'views/pedido/hacer.php';
 	}
 	
 	public function add(){
 		if(isset($_SESSION['identity'])){
+			/* echo '<pre>';
+			var_dump($_POST);
+			echo '</pre>';
+			die(); */
 			$usuario_id = $_SESSION['identity']->id;
-			$provincia = isset($_POST['provincia']) ? $_POST['provincia'] : false;
-			$localidad = isset($_POST['localidad']) ? $_POST['localidad'] : false;
-			$direccion = isset($_POST['direccion']) ? $_POST['direccion'] : false;
+			$calle = (Validacion::textoLargo($_POST['calle'],80) == '900')?false:$_POST['calle'];
+			$numero = (Validacion::validarNumero($_POST['numero']) == '-1')?false:$_POST['numero'];
+			$municipio = (Validacion::validarNumero($_POST['selectMunicipio'],'-1') == '900')?false:$_POST['selectMunicipio'];
+			$cp = (Validacion::validarNumero($_POST['cp'],'-1') == '800')?false:$_POST['cp'];
+			$atencion = (Validacion::textoLargo($_POST['atencion'],80) == '900')?false:$_POST['atencion'];
+			$referencia = (Validacion::textoLargo($_POST['calle'],80) == '900')?false:$_POST['calle'];
 			
-			$stats = Utils::statsCarrito();
-			$coste = $stats['total'];
+			$dato = array('calle'=>$calle,'numero'=>$numero,'municipio'=>$municipio,'cp'=>$cp,'atencion'=>$atencion,'ref'=>$referencia);
+
+			foreach($dato as $datos => $valor ){
+				if($valor == false){
+					$_SESSION['formulario'] = array(
+                        "error"=> 'El campo '.$dato." es Incorrecto, Llena los campos faltantes",
+                        "datos"=>$datos
+                    );
+                break;	
+				}
+			}
+
+			if(!isset($_SESSION['formulario'])){
 				
-			if($provincia && $localidad && $direccion){
+			$stats = Utils::statsCarrito();
+			$coste = $stats['total'];				
+			
 				// Guardar datos en bd
 				$pedido = new Pedido();
 				$pedido->setUsuario_id($usuario_id);
-				$pedido->setProvincia($provincia);
-				$pedido->setLocalidad($localidad);
-				$pedido->setDireccion($direccion);
+				$pedido->setDireccion($calle);
+				$pedido->setNumero($numero);
+				$pedido->setMunicipio($municipio);
+				$pedido->setCp($cp);
+				$pedido->setAtencion($atencion);
+				$pedido->setreferencia($referencia);
 				$pedido->setCoste($coste);
 				
 				$save = $pedido->save();
@@ -40,13 +63,15 @@ class pedidoController{
 				
 			}else{
 				$_SESSION['pedido'] = "failed";
-			}
-			
-			header("Location:".base_url.'pedido/confirmado');			
+			}	
+			echo '<script>window.location="'.base_url.'pedido/confirmado"</script>';		
 		}else{
 			// Redigir al index
-			header("Location:".base_url);
+			echo '<script>window.location="'.base_url.'"</script>';		
 		}
+		
+			
+			
 	}
 	
 	public function confirmado(){
@@ -85,14 +110,16 @@ class pedidoController{
 			$pedido = new Pedido();
 			$pedido->setId($id);
 			$pedido = $pedido->getOne();
-			
+			echo '<pre>';
+			var_dump($pedido);
+			echo '</pre>';
 			// Sacar los poductos
 			$pedido_productos = new Pedido();
 			$productos = $pedido_productos->getProductosByPedido($id);
 			
 			require_once 'views/pedido/detalle.php';
 		}else{
-			header('Location:'.base_url.'pedido/mis_pedidos');
+			echo '<script>window.location="'.base_url.'pedido/mis_pedidos"</script>';		
 		}
 	}
 	
@@ -119,9 +146,10 @@ class pedidoController{
 			$pedido->setEstado($estado);
 			$pedido->edit();
 			
-			header("Location:".base_url.'pedido/detalle&id='.$id);
+			echo '<script>window.location="'.base_url.'pedido/detalle&id='.$id.'"</script>';		
 		}else{
-			header("Location:".base_url);
+			
+			echo '<script>window.location="'.base_url.'"</script>';		
 		}
 	}
 	

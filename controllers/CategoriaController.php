@@ -1,6 +1,8 @@
 <?php
-require_once 'models/categoria.php';
-require_once 'models/producto.php';
+require_once  $_SERVER['DOCUMENT_ROOT'].'/titulo/models/categoria.php';
+require_once  $_SERVER['DOCUMENT_ROOT'].'/titulo/models/producto.php';
+/* require_once 'models/categoria.php';
+require_once 'models/producto.php'; */
 
 class categoriaController{
 	
@@ -54,8 +56,11 @@ class categoriaController{
 			$categoria = new Categoria();
 			$categoria->setNombre($_POST['nombre']);
 			$save = $categoria->save();
+
+			$_SESSION['success'] = '<div class="alert alert-success" role="alert">SE INSERTO CORRECTAMENTE</div>';
 		}
-		header("Location:".base_url."categoria/index");
+		/* header("Location:".base_url."categoria/index"); */
+		echo '<script>window.location="'.base_url.'categoria/index"</script>';
 	}
 
 	public function update(){
@@ -79,6 +84,26 @@ class categoriaController{
 
 		}
 
+	}
+
+	public function showCategoria($catId){
+		$id = (Validacion::validarNumero($catId) == -1) ? false : $catId;
+
+		if($id == false){
+			$_SESSION['err'] = '<div class="alert alert-danger" role="alert">ALGO SUCEDIO VERIFICA TUS DATOS</div>';
+			echo '<script>window.location="'.base_url.'Categoria/crear&id='.$catId.'"</script>';
+		}else{
+			$deleteCat = new Categoria();
+			$deleteCat->setId($id);
+			$verificar = $deleteCat->deleteCategoria();
+			$categoria = $verificar->fetch_row();
+
+			if($categoria[0] == 1){
+				echo 1;
+			}elseif($categoria[0] == 0){
+				echo 0;
+			}
+		}
 	}
 	
 }

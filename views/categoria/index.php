@@ -1,3 +1,7 @@
+<?php
+if(isset($_SESSION['success'])){echo $_SESSION['success'];Utils::deleteSession('success');}
+if(isset($_SESSION['err'])){echo $_SESSION['err'];Utils::deleteSession('err');}
+?>
 <h1>Gestionar categorias</h1>
 <a href="<?=base_url?>categoria/crear" class="button button-small">
 	Crear categoria
@@ -20,7 +24,7 @@
 			<td><?=$cat->nombre;?></td>
 			<td>
 				<div class="btn-group" role="group" aria-label="Basic example">
-					<a href="<?=base_url?>/Categoria/crear&id=<?=$cat->id?>" class="btn btn-primary" role="button">EDITAR</a>
+					<a href="<?=base_url?>Categoria/crear&id=<?=$cat->id?>" class="btn btn-primary" role="button">EDITAR</a>
 				</div>
 			</td>
 		</tr>

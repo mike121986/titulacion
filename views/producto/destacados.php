@@ -4,7 +4,7 @@
 	<div class="product">
 		<a href="<?=base_url?>producto/ver&id=<?=$product->id?>&cat=<?=$product->id?>">
 			<?php if($product->imagen != null): ?>
-				<img src="<?=base_url?>assets/img/images/<?=$product->imagen?>" />
+				<img src="<?=base_url?>uploads/images/<?=$product->imagen?>" />
 			<?php else: ?>
 				<img src="<?=base_url?>assets/img/camiseta.png" />
 			<?php endif; ?>

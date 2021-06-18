@@ -1,5 +1,5 @@
 $(document).ready(function(){
-
+	$('[data-toggle="tooltip"]').tooltip();   
 	// datatble
 	$(".TableGenerica").DataTable();
 
@@ -109,83 +109,7 @@ $(document).ready(function(){
 
       })
 
-	  // validar que los campos no se envien en blanco
-	  $("#enviarRegistro").on('click',function(e){
-		  e.preventDefault();
-		  var name = $("#nombre").val();
-		  var lastName = $("#apellidos").val();
-		  var email = $("#emailRegistro").val();
-		  var pasword = $("#password").val();
-
-		  
-			var verificar = expRegular('nombre',$("#nombre").val());
-			if(verificar == 0){
-				$("#nombre").css('border','1px solid red');
-				Swal.fire({
-					icon: 'error',
-					title: 'NOMBRE',
-					text: 'FORMATO DE NOMBRE INCORRECTO',
-					footer: 'Ernesto'
-				  })
-				verif = false;
-				return false;
-			 }else{
-				$("#nombre").css('border','1px solid green');
-				verif = true;
-			 }
-
-
-			 var verificar = expRegular('nombre',$("#apellidos").val());
-			 if(verificar == 0){
-				$("#apellidos").css('border','1px solid red');
-				Swal.fire({
-					icon: 'error',
-					title: 'APELLIDOS',
-					text: 'FORMATO DE APELLIDOS INCORRECTO',
-					footer: 'Ramirez Loyola'
-				  })
-				verif = false;
-				return false;
-			 }else{
-				$("#apellidos").css('border','1px solid green');
-				verif = true;
-			 }
-
-			 var verificar = expRegular('email',$("#emailRegistro").val());
-			 if(verificar == 0){
-				$("#emailRegistro").css('border','1px solid red');
-				Swal.fire({
-					icon: 'error',
-					title: 'CORREO',
-					text: 'FORMATO DE CORREO INCORRECTO',
-					footer: 'ejemplo@ejemplo.com'
-				  })
-				verif = false;
-				return false;
-			 }else{
-				$("#emailRegistro").css('border','1px solid green');
-				verif = true;
-			 }
-
-			 var verificar = expRegular('pass',$("#passwordRegistro").val());
-			 if(verificar == 0){
-				$("#passwordRegistro").css('border','1px solid red');
-				Swal.fire({
-					icon: 'error',
-					title: 'PASSWORD',
-					text: 'FORMATO DE PASSWORD INCORRECTO',
-					footer: 'La contraseña debe tener al entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula y al menos una mayúscula.'
-				  })
-				verif = false;
-				return false;
-			 }else{
-				$("#passwordRegistro").css('border','1px solid green');
-				verif = true;
-			 }
-
-			 if(verif == true){ $("#Frm-registro").submit();}
-	  	});
-
+	
 		// verificar si esta libre el correo
 		  $("#emailRegistro").on('change',function(){
 			 var valorInput = $(this).val();
@@ -230,5 +154,128 @@ $(document).ready(function(){
 				$("#priceTotal").html(precioTotal);
 		  });
 
+		  // eliminar categoria
+		  $("#deleteCategoria").on('click', function(e){
+			  e.preventDefault();
+			  var idCategoria = $("#categoriaHidden").val();
+			  Swal.fire({
+				title: 'ELIMINAR',
+				text: "¿Esta Seguro que desea elimiar esta categoria?",
+				icon: 'warning',
+				showCancelButton: true,
+				confirmButtonColor: '#3085d6',
+				cancelButtonColor: '#d33',
+				confirmButtonText: 'Eliminar'
+			  }).then((result) => {
+				if (result.isConfirmed) {
+
+					var idCat = new FormData();
+					idCat.append('cat_id',idCategoria);
+					$.ajax({
+						url:getAbsolutePath()+"views/layout/ajax.php",
+						method:"POST",
+						data:idCat,
+						cache:false,
+						contentType:false,
+						processData: false,
+						beforeSend:function(){
+							//$("#charge").addClass("spinner-grow spinner-grow-sm");
+
+						let timerInterval
+						Swal.fire({
+							title: 'Verificando Datos ...',
+							html: 'se esta verificando las categorias',
+							timer: 2000,
+							timerProgressBar: true,
+							didOpen: () => {
+								Swal.showLoading()
+								timerInterval = setInterval(() => {
+									const content = Swal.getHtmlContainer()
+									if (content) {
+										const b = content.querySelector('b')
+										if (b) {
+											b.textContent = Swal.getTimerLeft()
+										}
+									}
+								}, 100)
+							},
+							willClose: () => {
+								clearInterval(timerInterval)
+							}
+						})
+							
+						},
+						success:function(existe){
+							if(existe == 0){
+								/* Swal.fire(
+								'Eliminado!',
+								'La categoria se elimino correctamente',
+								'success'
+								); */
+								Swal.fire({
+									title: 'Eliminado',
+									text: "Se ha eliminado con exito",
+									icon: 'success',
+									showCancelButton: false,
+									confirmButtonColor: '#3085d6',
+									cancelButtonColor: '#d33',
+									confirmButtonText: 'ok'
+								  }).then((result) => {
+									if (result.isConfirmed) {
+										window.location.href = getAbsolutePath()+"categoria/index"
+									}
+								  })
+							}else if(existe == 1){
+								Swal.fire({
+									icon: 'error',
+									title: 'Oops...',
+									text: 'ESTA CATEGORIA ESTA ASIGANDA A UNO O VARIO PRODUCTOS',
+									footer: '<a href="">Why do I have this issue?</a>'
+								  })
+							}				
+						}
+					});
+				}
+			  })
+
+		  });
+
+		  // seleccionar estado
+		 
+		  $('.selectEstado').on('change', function(){
+			var  idselec= $(this).val();		
+			var pintamuni= '';
+			var id =  new FormData();
+			id.append("idEstado",idselec);
+		
+			$.ajax({
+				url: getAbsolutePath()+"views/layout/ajax.php",
+				method:"POST",
+				data:id,
+				cache:false,
+				contentType:false,
+				processData:false,
+				beforeSend:function(){
+				$('.spinnerWhite').html('<i class="fas fa-sync fa-spin"></i>');
+				},
+				success:function(mun){				
+						$.each(mun,function(i,item){
+						pintamuni+='<option value="'+item.id+'">'+item.nombre+' </option>';
+					}); 
+					 $('.spinnerWhite').html(''); 
+					$('.selectMunicipio').html(pintamuni);
+				}
+			}) 
+		}); 
+
+		// redireccionar para agregar al carrito
+		$("#idAddCarritoCompreas").on("click",function(e){
+			e.preventDefault();
+			var cantidadPedido = $("#cantidadPieza").val();
+			var totalPedido = $("#priceTotal").html();
+			var idPRoducto = $("#idPr").val();
+
+			window.location.href = getAbsolutePath()+"Carrito/add&id="+idPRoducto+"&pz="+cantidadPedido+"&total="+totalPedido;
+		})
 
 });

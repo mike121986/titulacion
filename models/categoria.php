@@ -26,7 +26,7 @@ class Categoria{
 	}
 
 	public function getAll(){
-		$categorias = $this->db->query("SELECT * FROM categorias ORDER BY id ASC");
+		$categorias = $this->db->query("SELECT * FROM categorias WHERE categorias.statusCategoria <> 0  ORDER BY id desc");
 		return $categorias;
 	}
 	
@@ -36,7 +36,8 @@ class Categoria{
 	}
 	
 	public function save(){
-		$sql = "INSERT INTO categorias VALUES(NULL, '{$this->getNombre()}');";
+		$sql = "call altaCategoria('{$this->getNombre()}')";
+		
 		$save = $this->db->query($sql);
 		
 		$result = false;
@@ -57,6 +58,15 @@ class Categoria{
 		}
 
 		return $result;
+	}
+
+	public function deleteCategoria(){
+		$delete = "SELECT verifDelete({$this->getId()})";
+		$query = $this->db->query($delete);
+
+		return $query;
+
+
 	}
 	
 	

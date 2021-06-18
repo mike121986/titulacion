@@ -89,6 +89,8 @@ return false; */
      phonearray = /^[0-9]+$/;
      varif =   phonearray;
     break; 
+
+
     
     case "decimales":
      decimal = /^([0-9]+\.?[0-9]{0,2})$/;
@@ -227,6 +229,20 @@ function hoy(){
   //     window.history.back();
   //   }
   // }
+
+  function useVeruif(verifica,idInput){
+    var regreso = false;
+    if(verifica == 0){
+      $("#"+idInput).css('border','1px solid red');
+      regreso = regreso;
+    }else{
+     
+      $("#"+idInput).css('border','1px solid green');
+      regreso = true;
+    }
+
+    return regreso;
+  }
   
  
 

@@ -57,6 +57,7 @@ class productoController{
 	public function save(){
 		Utils::isAdmin();
 		if(isset($_POST)){
+
 			$nombre = isset($_POST['nombre']) ? $_POST['nombre'] : false;
 			$descripcion = isset($_POST['descripcion']) ? $_POST['descripcion'] : false;
 			$precio = isset($_POST['precio']) ? $_POST['precio'] : false;
@@ -72,8 +73,38 @@ class productoController{
 				$producto->setStock($stock);
 				$producto->setCategoria_id($categoria);
 				
-				// Guardar la imagen
+				// Guardar la imagenp
 				if(isset($_FILES['imagen'])){
+					function compressImage($source, $destination, $quality) { 
+						// Obtenemos la información de la imagen
+						$imgInfo = getimagesize($source); 
+						$mime = $imgInfo['mime']; 
+						 
+						// Creamos una imagen
+						switch($mime){ 
+							case 'image/jpeg': 
+								$image = imagecreatefromjpeg($source); 
+								break; 
+							case 'image/png': 
+								$image = imagecreatefrompng($source); 
+								break; 
+							case 'image/gif': 
+								$image = imagecreatefromgif($source); 
+								break; 
+							default: 
+								$image = imagecreatefromjpeg($source); 
+						} 
+						 
+						// Guardamos la imagen
+						/* var_dump(base_url.$destination);
+						die(); */
+						imagejpeg($image, $destination, $quality); 
+						 
+						// Devolvemos la imagen comprimida
+						return $destination; 
+					}
+					/* var_dump($_FILES);
+					exit(); */
 					$file = $_FILES['imagen'];
 					$filename = $file['name'];
 					$mimetype = $file['type'];
@@ -85,7 +116,8 @@ class productoController{
 						}
 
 						$producto->setImagen($filename);
-						move_uploaded_file($file['tmp_name'], 'uploads/images/'.$filename);
+						/* move_uploaded_file($file['tmp_name'], 'uploads/images/'.$filename); */
+						$compressimage = compressImage($file['tmp_name'],'uploads/images/'.$filename,75);
 					}
 				}
 				
@@ -109,7 +141,8 @@ class productoController{
 		}else{
 			$_SESSION['producto'] = "failed";
 		}
-		header('Location:'.base_url.'producto/gestion');
+		/* header('Location:'.base_url.'producto/gestion'); */
+		echo '<script>window.location="'.base_url.'producto/gestion"</script>';
 	}
 	
 	public function editar(){
@@ -126,7 +159,8 @@ class productoController{
 			require_once 'views/producto/crear.php';
 			
 		}else{
-			header('Location:'.base_url.'producto/gestion');
+			/* header('Location:'.base_url.'producto/gestion'); */
+			echo '<script>window.location="'.base_url.'producto/gestion"</script>';
 		}
 	}
 	
@@ -148,7 +182,8 @@ class productoController{
 			$_SESSION['delete'] = 'failed';
 		}
 		
-		header('Location:'.base_url.'producto/gestion');
+		/* header('Location:'.base_url.'producto/gestion'); */
+		echo '<script>window.location="'.base_url.'producto/gestion"</script>';
 	}
 	
 }

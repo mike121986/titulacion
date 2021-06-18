@@ -55,10 +55,12 @@
 						</div>
 						<div class="precioTotal">
 							<input type="hidden" id="precioUnidad" value="<?=$product->precio ?>">
+							<input type="hidden" id="idPr" value="<?=$product->id ?>">
 							<p id="dollarSign">$</p><p class="price" id="priceTotal"><?=$product->precio ?></p>
 						</div>
 						<div class="botonComprar">
-							<a href="<?=base_url?>Carrito/add&id=<?=$product->id?>" class="btn btn-success btn-lg btn-block">Agregar a carrito</a>
+							<!-- <a href="<?=base_url?>Carrito/add&id=<?=$product->id?>" class="btn btn-success btn-lg btn-block">Agregar a carrito</a> -->
+							<button class="btn btn-success btn-lg btn-block idAddCarritoCompreas" id="idAddCarritoCompreas">Agregar a carrito</button>
 						</div>
 					</div>
 				</div>

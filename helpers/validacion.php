@@ -222,6 +222,10 @@ class Validacion
 				$largoDelTexto = 10;
 				$valor = 'validarTelefono';
 				break;
+			case 'cp':
+				$largoDelTexto = 5;
+				$valor = 'validarNumero';
+				break;
 			case 'email':
 				$largoDelTexto = "";
 				$valor = 'validarEmail';
