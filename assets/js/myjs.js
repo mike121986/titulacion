@@ -3,6 +3,11 @@ $(document).ready(function(){
 	// datatble
 	$(".TableGenerica").DataTable();
 
+	// boton de regreso
+	$(".btnRegresoPagianas").on("click", function(e){
+		e.preventDefault();
+		history.go(-1);
+	});
 	
 	var path = window.location.href;
 	var login = sessionStorage.getItem("logguin");

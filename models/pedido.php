@@ -121,6 +121,11 @@ class Pedido{
 		return $productos;
 	}
 	
+	public function detalleVenta(){
+		$detalle = "SELECT * FROM detallesPedido where id = {$this->getId()} ";
+		$query = $this->db->query($detalle);
+		return $query->fetch_object();
+	}
 	public function getOne(){
 		$producto = $this->db->query("SELECT * FROM pedidos WHERE id = {$this->getId()}");
 		return $producto->fetch_object();

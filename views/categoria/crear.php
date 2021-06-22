@@ -3,7 +3,9 @@
 	if(isset($_SESSION['err'])){echo $_SESSION['err'];Utils::deleteSession('err');}
 	
 	?>
-	
+	<div class="boton">
+		<button class="btnRegresoPagianas">REGRESAR</button>
+	</div>
 	<h2 >Editar Categoria <?=$editarProducto->nombre?></h2>
 	<div class="container">
 		<form action="<?=base_url?>Categoria/update" method="POST">
@@ -32,6 +34,9 @@
 		</form>
 	</div>
 <?php else:?>
+	<div class="boton">
+		<button class="btnRegresoPagianas">REGRESAR</button>
+	</div>
 <h2>Crear nueva categoria</h2>
 	<div class="container">
 		<form action="<?=base_url?>categoria/save" method="POST">

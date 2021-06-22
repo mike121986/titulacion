@@ -109,10 +109,8 @@ class pedidoController{
 			// Sacar el pedido
 			$pedido = new Pedido();
 			$pedido->setId($id);
-			$pedido = $pedido->getOne();
-			echo '<pre>';
-			var_dump($pedido);
-			echo '</pre>';
+			/* $pedido = $pedido->getOne(); */
+			$pedido = $pedido->detalleVenta();
 			// Sacar los poductos
 			$pedido_productos = new Pedido();
 			$productos = $pedido_productos->getProductosByPedido($id);
