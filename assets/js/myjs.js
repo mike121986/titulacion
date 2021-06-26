@@ -283,4 +283,9 @@ $(document).ready(function(){
 			window.location.href = getAbsolutePath()+"Carrito/add&id="+idPRoducto+"&pz="+cantidadPedido+"&total="+totalPedido;
 		})
 
+		$(".botonLoguin").on("click",function(e){
+			e.preventDefault();
+			$("#login").toggle(1000);
+		});
+
 });

@@ -1,7 +1,7 @@
 <h1>Algunos de nuestros productos</h1>
 <?php while($product = $productos->fetch_object()): ?>
 	
-	<div class="product">
+	<div class="col-sm-12 col-md-2 col-md-2 col-xl-2 product">
 		<a href="<?=base_url?>producto/ver&id=<?=$product->id?>&cat=<?=$product->id?>">
 			<?php if($product->imagen != null): ?>
 				<img src="<?=base_url?>uploads/images/<?=$product->imagen?>" />

@@ -1,7 +1,6 @@
 <!DOCTYPE HTML>
 <html lang="es">
-	<head>
-		
+	<head>		
 		<meta charset="utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" /> -->
@@ -21,9 +20,13 @@
     <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 	<!-- easy zoom -->
 	<!-- <link rel="stylesheet" href="<?=base_url?>assets/css/easyzoom.css"> -->
+	<!-- fontawensome -->
+	<link rel="stylesheet" href="<?=base_url?>assets/css/fontAwensome/all.min.css">
 	<!-- owl Carrusel -->
     <link rel="stylesheet" href="<?=base_url?>assets/css/owlcarrusel/owl.carousel.min.css">
     <link rel="stylesheet" href="<?=base_url?>assets/css/owlcarrusel/owl.theme.default.min.css">
+
+
     <!-- js boostrap -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
@@ -41,7 +44,7 @@
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
     <!-- fontawensome -->
-    <script src="https://kit.fontawesome.com/1849e1867b.js" crossorigin="anonymous"></script>
+   <!--  <script src="https://kit.fontawesome.com/1849e1867b.js" crossorigin="anonymous"></script> -->
     <!-- swet alert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 	<!-- elevatezoom -->
